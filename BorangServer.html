@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Borang Permohonan Server (Virtual Machine - VM)</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:20px; background:#f0f3f7;}
+    .container {
+      max-width:900px; margin:auto; background:#fff; padding:25px 35px;
+      border-radius:6px; box-shadow:0 0 8px rgba(0,0,0,0.12); border-top:6px solid #004b8d;
+    }
+    h2 {color:#004b8d; margin-bottom:0;}
+    h3 {margin-top:0;}
+    label {font-weight:bold; display:block; margin-top:12px; font-size:13px;}
+    input[type="text"], input[type="date"], textarea {
+      width:100%; padding:6px 8px; border:1px solid #ccd3dd; border-radius:4px;
+      margin-top:4px; font-size:13px; box-sizing:border-box;
+    }
+    textarea {resize:vertical; min-height:60px;}
+    .inline-group {display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;}
+    .inline-group label {font-weight:normal; font-size:13px;}
+    .section-title {
+      margin-top:25px; padding:6px 10px; background:#e6f0fa; border-left:4px solid #004b8d;
+      font-weight:bold; text-transform:uppercase; color:#004b8d; font-size:13px;
+    }
+    .aku-janji {font-size:13px; margin-top:8px; text-align:justify;}
+    .signature-block {margin-top:10px;} /* tiada garis putus-putus */
+    .button-row {margin-top:25px; text-align:right;}
+    button {
+      padding:8px 16px; border:none; border-radius:4px; cursor:pointer; margin-left:5px;
+      font-size:13px;
+    }
+    .submit-btn {background:#004b8d; color:#fff;}
+    .reset-btn {background:#ccc;}
+    .small-note {font-size:11px; color:#666; margin-top:4px;}
+    fieldset[disabled] {opacity:0.6;}
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Borang Permohonan Server</h2>
+  <h3>(Virtual Machine - VM)</h3>
+
+  <form id="vmForm">
+
+    <label for="TarikhPermohonan">1. Tarikh Permohonan:</label>
+    <input type="date" id="TarikhPermohonan" name="TarikhPermohonan">
+
+    <label for="TujuanPermohonan">2. Tujuan:</label>
+    <textarea id="TujuanPermohonan" name="TujuanPermohonan"></textarea>
+
+    <label>3. Server:</label>
+    <div class="inline-group">
+      <label><input type="checkbox" name="ServerPortal"> Portal</label>
+      <label><input type="checkbox" name="ServerAplikasi"> Aplikasi</label>
+      <label><input type="checkbox" name="ServerDatabase"> Database</label>
+      <label><input type="checkbox" name="ServerLainTick"> Lain-lain</label>
+    </div>
+    <input type="text" name="ServerLainText" placeholder="Lain-lain (nyatakan)">
+
+    <label for="BilanganServer">4. Bil. Server yang diperlukan:</label>
+    <input type="text" id="BilanganServer" name="BilanganServer">
+
+    <label>5. Environment:</label>
+    <div class="inline-group">
+      <label><input type="radio" name="Environment" value="Development"> Development</label>
+      <label><input type="radio" name="Environment" value="Production"> Production</label>
+      <label><input type="radio" name="Environment" value="Lain-lain"> Lain-lain</label>
+    </div>
+    <input type="text" name="EnvironmentLainText" placeholder="Lain-lain (nyatakan)">
+
+    <div class="section-title">Spesifikasi Server</div>
+
+    <label>6. Operating System (OS):</label>
+    <div class="inline-group">
+      <label><input type="radio" name="OS" value="Ubuntu 18"> Ubuntu Version 18</label>
+      <label><input type="radio" name="OS" value="Ubuntu 20"> Ubuntu Version 20</label>
+      <label><input type="radio" name="OS" value="Windows Server 2019"> Windows Server 2019</label>
+      <label><input type="radio" name="OS" value="Lain-lain"> Lain-lain</label>
+    </div>
+    <input type="text" name="OSLainText" placeholder="Lain-lain (nyatakan)">
+
+    <label for="LinuxLain">7. Linux (1 CPU, 1GB RAM, 32GB HDD):</label>
+    <textarea id="LinuxLain" name="LinuxLain" placeholder="Lain-lain (nyatakan)"></textarea>
+
+    <label for="WindowsLain">8. Windows (1 CPU, 8GB RAM, 80GB OS):</label>
+    <textarea id="WindowsLain" name="WindowsLain" placeholder="Lain-lain (nyatakan)"></textarea>
+
+    <label for="RepoLain">9. Lain-lain (Ubuntu Repository):</label>
+    <textarea id="RepoLain" name="RepoLain" placeholder="Terhad kepada Official Ubuntu Repository sahaja, cth: apache, php"></textarea>
+
+    <div class="section-title">Pemohon</div>
+
+    <p class="aku-janji">
+      Saya memberi aku janji bahawa akan menggunakan server mengikut environment yang ditetapkan.
+      Server tidak akan digunakan untuk aplikasi/portal selain daripada tujuan permohonan ini.
+    </p>
+
+    <div class="signature-block">
+      <label for="NamaPemohon">Nama Pemohon:</label>
+      <input type="text" id="NamaPemohon" name="NamaPemohon">
+
+      <label for="TarikhPemohon">Tarikh:</label>
+      <input type="date" id="TarikhPemohon" name="TarikhPemohon">
+
+      <label for="EmelTel">Emel & Telefon:</label>
+      <input type="text" id="EmelTel" name="EmelTel">
+    </div>
+
+    <div class="section-title">Pengesahan Pegawai (Team Pusat Data)</div>
+    <p class="aku-janji" style="font-style:italic">
+      Pusat Data berhak melaksanakan pelarasan semula sumber (CPU/RAM/HDD) sekiranya sumber
+      berkenaan tidak digunakan atau tidak mencukupi.
+    </p>
+
+    <!-- Ruangan ini hanya untuk Pegawai Pusat Data – pemohon tak boleh isi -->
+    <fieldset id="pdFieldset" disabled style="border:none; padding-top:10px;">
+      <label for="NamaPegawai">Nama Pegawai:</label>
+      <input type="text" id="NamaPegawai" name="NamaPegawai">
+
+      <label for="JawatanPegawai">Jawatan:</label>
+      <input type="text" id="JawatanPegawai" name="JawatanPegawai">
+
+      <label for="TarikhPegawai">Tarikh:</label>
+      <input type="date" id="TarikhPegawai" name="TarikhPegawai">
+    </fieldset>
+
+    <p class="small-note">
+      *Ruangan Pusat Data hanya diisi oleh Pegawai Pusat Data selepas menerima notifikasi emel.*
+    </p>
+
+    <div class="button-row">
+      <button type="reset" class="reset-btn">Reset</button>
+      <button type="submit" class="submit-btn">Hantar</button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // ====== SETTING PENGHANTARAN EMEL ======
+  const GMAIL_TO  = "rosmizan.mohamad@bheuu.gov.my,karl.gangnam@gmail.com";
+  const FORM_LINK = "https://intra.bheuu.gov.my/vm"; // tukar bila dah ada URL sebenar
+  // =======================================
+
+  const pad2 = n => n.toString().padStart(2, "0");
+
+  document.getElementById("vmForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const f = e.target;
+    const get  = n => f[n]?.value?.trim() || "-";
+    const tick = n => f[n]?.checked ? "Ya" : "Tidak";
+
+    // Auto ID Permohonan
+    const now = new Date();
+    const id  = `VM-${now.getFullYear()}${pad2(now.getMonth()+1)}${pad2(now.getDate())}-${pad2(now.getHours())}${pad2(now.getMinutes())}${pad2(now.getSeconds())}`;
+    const tarikhSistem = `${pad2(now.getDate())}/${pad2(now.getMonth()+1)}/${now.getFullYear()} ${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
+
+    const tujuan           = get("TujuanPermohonan");
+    const tarikhPermohonan = get("TarikhPermohonan");
+    const namaPemohon      = get("NamaPemohon");
+
+    const serverRingkas = [
+      tick("ServerPortal")   === "Ya" ? "Portal"   : "",
+      tick("ServerAplikasi") === "Ya" ? "Aplikasi" : "",
+      tick("ServerDatabase") === "Ya" ? "Database" : "",
+      tick("ServerLainTick") === "Ya" ? `Lain-lain (${get("ServerLainText")})` : ""
+    ].filter(Boolean).join(", ") || "-";
+
+    const body = `
+PERMOHONAN SERVER (VIRTUAL MACHINE - VM) - NOTIFICATION
+
+ID Permohonan   : ${id}
+Tarikh Sistem   : ${tarikhSistem}
+
+Tujuan Permohonan :
+${tujuan}
+
+Tarikh Permohonan : ${tarikhPermohonan}
+Server Dipohon     : ${serverRingkas}
+Nama Pemohon       : ${namaPemohon}
+
+Sila buka borang lengkap di pautan berikut:
+${FORM_LINK}
+
+*Tindakan susulan oleh Pegawai Pusat Data diperlukan.*
+`;
+
+    const subject = `NOTIFICATION Permohonan VM - ${id} - ${namaPemohon}`;
+
+    const confirmSend = confirm("Sahkan untuk menghantar notifikasi permohonan VM kepada Pusat Data?");
+    if (!confirmSend) return;
+
+    const baseUrl = "https://mail.google.com/mail/?view=cm&fs=1";
+    const params  = new URLSearchParams({
+      to: GMAIL_TO,
+      su: subject,
+      body: body
+    });
+
+    const gmailUrl = `${baseUrl}&${params.toString()}`;
+    window.open(gmailUrl, "_blank");
+  });
+</script>
+
+</body>
+</html>
